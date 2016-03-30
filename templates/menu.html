@@ -1,0 +1,26 @@
+<ion-view>
+    <div class="card">
+        <div class="card-body card-padding">
+            <br>
+	    <div id="gobi" >
+		<div class="carousel col-sm-6 col-xs-12"  ng-repeat="Menus in MenuData">
+		    <div class="carousel-inner" >
+			<div  class="item text-center active" >
+			    <a href="#{{subMenuOption}}/={{Menus.id}}" >
+			    <img class="ng-scope" style="width: 100%;" src="{{Menus.image}}" onerror="this.onerror=null;this.src='assets/background/default.jpg';" alt="Image">
+			    <div  class="carousel-caption ng-scope">
+				    <h3 class="ng-binding">{{Menus.name}}</h3>
+			  </div>
+			    </a>
+			</div>
+			    
+		    </div>
+		    <br>
+		    <br>
+		</div>
+	    </div>
+        </div>
+    </div>
+</ion-view>
+
+

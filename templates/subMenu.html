@@ -1,0 +1,74 @@
+<ion-view>
+    <div class="card" >
+       
+        
+           <!-- <div class="card-header">
+            <div class="itempageshowing">
+                <div class="order">
+                    <a aria-expanded="false" data-toggle="dropdown" href="" ng-click="goback();" class="btn bgm-userdefined btn-floatLeft z-depth-1 waves-effect btn-md2 pull-left">
+                        <i class="md  md-keyboard-backspace"></i>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+        <!--<br><br>-->
+             <!-- <div class="card-header jumbotron"> -->
+                <!-- <h2>Menu Categories<small>Select Menu Categories</small></h2> -->
+                <!-- <p></p>
+                <div id="top-search-wrap">
+                    <input type="text">
+                </div> -->
+                <!-- <div class="chat-search"> -->
+                    <!-- <div class="fg-line"> -->
+                        <!-- <input type="search" class="form-control" ng-model="SubMenus" placeholder="Search Menu Category"> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+          
+
+            <!-- <div class="chat-search">
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Search Sub Menu">
+                </div>
+            </div> -->
+            <!-- <div id="submebu">-->
+            <!--    <div class="listview">-->
+            <!--        <a  class="lv-item">-->
+            <!--            <div class="media">-->
+            <!--                <div class="pull-left p-relative"> -->
+            <!--                   <img  err-src="assets/background/default.jpg"  imageonload="assets/background/default.jpg" ng-src="assets/background/default.jpg" class="lv-img-sm">-->
+            <!--                </div>-->
+            <!--                <div class="media-body">-->
+            <!--                    <div class="lv-title" id="menu-size">rtet</div>-->
+            <!--                    <small class="lv-small">Categories</small>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </a>-->
+            <!--    </div>-->
+            <!--</div>-->
+        <div class="card-body">
+            <div id="submebu">
+                <div class="listview" ng-repeat="SubMenus in SubMenuData">
+                    <a href="#items/={{SubMenus.menuId}}={{SubMenus.id}}" class="lv-item">
+                        <div class="media">
+                            <div class="pull-left p-relative"> 
+                                <!--<img alt=""  src="{{SubMenus.image}}" class="lv-img-sm" onerror="this.onerror=null;this.src='assets/background/default.jpg';">-->
+                                <!--<img image-lazy-src="{{SubMenus.image}}" image-lazy-background-image="true">-->
+                                <img  onerror="this.src='assets/background/default.jpg';this.onerror=null;" ng-src="{{SubMenus.image}}" imageonload="{{SubMenus.image}}"  class="lv-img-sm">
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title" id="menu-size">{{SubMenus.name}}</div>
+                                <small class="lv-small">{{SubMenus.name}} Categories</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+             <!-- <a aria-expanded="false" data-toggle="dropdown" href="" ng-click="goback();" class="btn bgm-deeppurple btn-float z-depth-1 waves-effect pull-right">
+           <i class="md  md-keyboard-backspace"></i>
+        </a> -->
+        </div>
+       
+    </div>
+    
+</ion-view>

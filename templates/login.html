@@ -1,0 +1,140 @@
+<ion-view>
+<style type="text/css">
+.backgg 
+{
+    
+   
+}
+.card {
+   /*background-image:url('../images/bg.png');*/
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 100%), url({{signInImage}}) repeat 0 0;
+     /*background-image: url("assets/Restaurant-Menu-Theme-Backgrounds.jpg");*/
+}
+
+</style>
+    <!-- <div class="block-header">
+        <img class="img-responsive img-circle" id="circle" src="img/logo.jpg">        
+    </div> -->
+    <div class="backgg" ng-controller="authentication">
+
+        <div class="card">
+
+            <div class="card-header">
+                <!-- <h2>Login</h2> style="width: 119px; height: 119px;"-->
+            </div>
+            <div class="text-center">
+                
+                 <img  src="assets/002.png" style="width: 119px; height: 119px;">
+            </div>
+               
+                <br><br><br><br><br><!--<br><br><br><br>-->
+            <div class="card-body card-padding" style="padding: 10px;">
+                <form name="form"  role="form" >
+                    <div class="form-group input-group">
+                        <span class="input-group-addon" style="color:#fff;">
+                            <i class="md-person md-large" ></i>
+                        </span>
+                        <div class="fg-line">
+                            <input class="form-control fg-input" style="background-color: transparent; color:#fff; font-size: 20px;font-weight: bold;" value="{{usneMail}}" type="email" placeholder="Email" name="email" id="email">
+                        </div> 
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon" style="color:#fff;">
+                            <i class="md-lock md-large "></i>
+                        </span>
+                        <div class="fg-line">
+                            <input class="form-control fg-input" type="password" style="background-color: transparent; color:#fff;font-size: 19px " value="{{password}}" id="password" placeholder="Password" name="password">
+                        </div>        
+                    </div>
+                    <div class="form-group input-group" style="color:#fff; font-size: 19px">
+                        <!--<div class="checkbox">-->
+                            <label>
+                                You will be always signed in unless you log out.
+                            </label>
+                        <!--</div>-->
+                    </div>
+                    <!--<div class="checkbox">-->
+                    <!--    <label>-->
+                    <!--        <input type="checkbox" id="remember" value="YES">-->
+                    <!--        <i class="input-helper"></i>-->
+                    <!--        Rember Me.....-->
+                    <!--    </label>-->
+                    <!--</div>-->
+                    <center>
+                        <button type="submit" ng-click="loginAuthentication();" class="btn bgm-red btn-md2 waves-effect">Sign In</button>
+                        <br><br>
+                        <p>
+                            <div ng-show="registered!='yes'" >
+                                Don't have an account? Sign up easily! 
+                                <a href="#register"  class="bluegray " style="color:#104f70; font-size: 30px;font-weight: bold;">Sign up</a>
+                                <div>
+                                    <span style="color:#fff; font-size: 70%">Already have Account?</span>
+                                    <br/>
+                                    <a ng-click="login()">
+                                        <img src="img/fbNew.png" style="width: 233px; height: 50px;">
+                                    </a>
+                                    <br/><br/>
+                                    <a ng-click="Glogin()">
+                                        <img src="img/sign-in-with-google.png" style="width: 233px; height: 50px;">
+                                    </a>
+                                </div>
+                            </div>
+                            <div ng-show="registered=='yes'">
+                                <a href="" ng-click="forgotBox()" style="color:#104f70; font-size: 30px;font-weight: bold;">Forgot Password</a>
+                            </div> 
+                        </p>
+                        
+                        <!-- <a href="#register" type="submit" class="btn bgm-green waves-effect btn-sm ">Register</a>     -->
+                        <!--<a href="#forgotPassword" type="submit" class="btn bgm-bluegray waves-effect btn-sm">Forgot Password</a>-->
+                    </center>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Forgot Password</button></h4>
+                </div>
+                <div class="modal-body" id="someHide">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">
+                            <i class="md md-mail"></i>
+                        </span>
+                        <div class="fg-line">
+                           <!--<label>{{usneMail}}</label>-->
+                            <input class="form-control fg-input bgc " type="email"  value="{{usneMail}}"  id="forgotemail"name="forgotemail" required placeholder=" Enter Your Registered Email Id">
+                        </div>
+                    </div>
+                   
+                </div>    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-md2 bgm-bluegray waves-effect" ng-click="sendMail()">Send</button>
+                    <button type="button" class="btn btn-default btn-md2"  data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                
+                
+    <style>
+        .img-responsive 
+        {
+            margin: 0 auto;
+        }
+    </style>
+</ion view>
+<style type="text/css">
+.error{
+    color: #E23237;
+}
+</style>
+    

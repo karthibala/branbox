@@ -1,0 +1,85 @@
+<ion-view>
+    <div class="card" ng-controller="AddToCartCtrl">
+        <div class="card-body card-padding">
+            
+            <div class="card-header ">
+                <h2> Name: {{userName}} <small>Email: {{useremail}}</small></h2>
+                <br>
+                <h2 class="pull-center" >Your Orders<small>final summary</small>  </h2>
+
+            </div>
+
+            <button ng-click="showfun(OrderedItems);" class="btn bgm-orange  btn-sm waves-effect"> Show Orders</button>
+            <button ng-click="hidefun(OrderedItems);" class="btn bgm-bluegray  btn-sm waves-effect pull-right"> Hide Orders</button>
+            <div class="table-responsive" style="" tabindex="5" id="orderdata">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Sub Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr ng-repeat="order in OrderedItems">
+                            <td>
+                                <div>
+                                   <span class="span-sty" >{{order.itemName}}</span><br>
+                                    <img src="{{order.image}}" class="text-center" style="width:80px;">
+                                </div>
+                                
+                            </td>
+                            <!-- <td></td> -->
+                            <td> 
+
+                                <input type="text" class="form-control"ng-keyup="getsubtotal($event,$index,order);" name="quantity"class="item item-input "  id="quantity" value="{{order.quantity}}">
+
+
+                            </td>
+                            <td> 
+                                {{order.price}}
+                                <input type="hidden" style="width:25px"  readonly name="price"class="form-control" id="price" value="{{order.price}}">
+
+                            </td>
+                            <td> 
+                                {{order.subTotal}}
+                                <input type="hidden" style="width:60px" readonly name="subtotal"class="form-control" id="subTotal" value="{{order.subTotal}}">
+
+                            </td>
+                            <td>
+                                <button ng-click="removeOrder($index,order);" class="btn button-small bgm-red button-assertive"><i class="md  md-clear"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <div class=" button button-small  icon-right  text-center">
+                    Total: 
+                      {{ getTotal(); }} AED
+
+                      <br>
+                      <br>
+                      <button ng-click="getFood(OrderedItems);" id="food" data-type="inverse" data-animation-in="animated flipInY"  data-animation-Out="animated flipOutY" class="btn bgm-green btn-sm waves-effect t">Get Food</button>
+                </div>
+
+                
+
+               <!--  <div class=" button button-small button-assertive  icon-right  text-center"   >
+                   
+                </div> -->
+               
+
+            </div>
+
+          
+            <a aria-expanded="false" data-toggle="dropdown" href="" ng-click="goback();" class="btn bgm-deeppurple btn-float z-depth-1 waves-effect pull-right">
+                    <i class="md  md-keyboard-backspace"></i>
+                </a>
+            
+        </div>
+    </div>
+    
+</ion-view>

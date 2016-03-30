@@ -1,0 +1,367 @@
+<ion-view >
+<style>
+/*.card{*/
+/*    height: 1000px;*/
+/*}*/
+.orderstatus{
+    color: #d84405;
+}
+
+</style>
+    <div class="card" id="profile-main">
+	<div class="pm-overview c-overflow" style="height: auto;">
+	    <div class="pmo-pic">
+		<div class="p-relative">
+		    <a ng-click="takePicture()">
+			<img ng-if="imgSrc !='img/noProfileImage.jpg' " class="img-responsive" ng-src="{{imgSrc}}" alt="">
+			<img ng-if="imgSrc =='img/noProfileImage.jpg' " class="img-responsive" ng-src="img/noProfileImage.jpg" alt=""> 
+		    </a>
+		    <button class="pmop-edit" ng-click="takePicture()">
+			<i class="md md-camera-alt"></i> <span>Update Profile Picture</span>
+		    </button>
+		</div>
+		<div class="pmo-stat">
+		    <h2 class="m-0 c-white">Update</h2>
+		    Profile Picture
+		</div>
+	    </div>
+	    
+	    <div class="pmo-block pmo-contact hidden-xs">
+		<h2>Contact</h2>
+		
+		<ul>
+		    <li ng-if="profileDetails.mobile !='' "><i class="md md-phone"></i> {{profileDetails.mobile}}</li>
+		    <li ng-if="profileDetails.email !='' "><i class="md md-email"></i>{{profileDetails.email}}</li>
+		    <li ng-if="profileDetails.address1 !='' ">
+			<i class="md md-location-on"></i>
+			<address class="m-b-0">
+			    {{profileDetails.address1}}, <br/>
+			    {{profileDetails.address2}} <br/>
+			    {{profileDetails.city}}, {{profileDetails.state}}, <br/>
+			    {{profileDetails.country}}-{{profileDetails.postalCode}}.
+			</address>
+		    </li>
+		</ul>
+	    </div>
+	    
+	</div>
+	
+	<div class="pm-body clearfix updateContentDiv" id="updateedId">
+	    <div role="tabpanel">
+		<ul class="tab-nav tab-nav-center tn-justified" role="tablist">
+		    <li><a data-target="#profile11" aria-controls="profile11" role="tab" data-toggle="tab">Info</a></li>
+		    <!--<li><a data-target="#messages11" aria-controls="messages11" role="tab" data-toggle="tab">FeedBack</a></li>-->
+		    <li class="active"><a data-target="#home11" aria-controls="home11" role="tab" data-toggle="tab">My orders</a></li>
+		</ul>
+		<div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="home11">
+			<div class="pmb-block">
+			    <div class="pmbb-header">
+				<h2><i class="md md-equalizer m-r-5"></i>Orderd Items History</h2>
+				<br>
+				<h5 class="text-center orderstatus" ng-show="!ordereedDatesStatus">--Nothing in order History--</h5>
+				<div ng-repeat="orderdate in ordereedDates">
+				    <span>
+					<button class="btn bgm-teal waves-effect" type="button" data-toggle="collapse" data-target="#collapseExample{{orderdate.id}}" aria-expanded="false" aria-controls="collapseExample{{orderdate.id}}">Ordered At {{orderdate.orderedDate}}</button>
+					<a href="" ng-click="removeItems($index,orderdate.orderRefDate)" class="btn bgm-red"><i class="md md-delete""></i></a>
+				    </span>
+				    <div class="card-body table-responsive collapse" id="collapseExample{{orderdate.id}}">
+					<table class="table">
+					    <thead>
+						<tr>
+						    <!--<th>#</th>-->
+						    <th>Item Name</th>
+						    <th>Quantity</th>
+						    <th>price</th>
+						    <th>Subtotal</th>
+						    <!--<th>Date</th>-->
+						</tr>
+					    </thead>
+					    <tbody>
+						<tr ng-repeat="orders in orderedItemDetails" ng-if="orders.orderRefDate == orderdate.orderRefDate">
+						    <!--<td>{{orders.id}}</td>-->
+						    <td>{{orders.itemName}}</td>
+						    <td>{{orders.price}}</td>
+						    <td>{{orders.quantity}}</td>
+						    <td>{{orders.subTotal}}</td>
+						    <!--<td>{{orders.orderedDate}}</td>-->
+						</tr>
+					    </tbody>
+					</table>
+				    </div>
+				    <br><br>
+				</div>
+				<br>
+			    </div>
+			</div>
+			<div class="pmb-block">
+			    <div class="pmbb-header">
+				<h2><i class="md md-equalizer m-r-5"></i> Table Booking History</h2><br>
+				<h5 class="text-center orderstatus" ng-show="!tablebookingStatus">--Nothing in Table booking History--</h5>
+				<div class="card-body table-responsive"  ng-if="tablebookingStatus">
+				    <table class="table">
+					<thead>
+					    <tr>
+						<!--<th>#</th>-->
+						<th>bookDate</th>
+						<th>bookTime</th>
+						<th>mems</th>
+						<!--<th>Action</th>-->
+					    </tr>
+					</thead>
+					<tbody>
+					    <tr ng-repeat="booking in tablebooking">
+						<!--<td>{{booking.id}}</td>-->
+						<td>{{booking.bookDate}}</td>
+						<td>{{booking.bookTime}}</td>
+						<td>{{booking.mems}}</td>
+						<td><a href="" ng-click="removeBooking($index,booking.id)" class="btn bgm-red"><i class="md md-delete""></i></a></td>
+					    </tr>
+					</tbody>
+				    </table>
+				</div>
+			    </div>
+			</div>
+
+		    </div>
+		    <div role="tabpanel" class="tab-pane" id="profile11">
+			<div class="pmb-block">
+			    <div class="pmbb-header">
+				<h2><i class="md md-phone m-r-5"></i> Contact Information</h2>
+				
+				<ul class="actions">
+				    <li class="dropdown">
+					<a href="" data-toggle="dropdown">
+					    <i class="md md-more-vert"></i>
+					</a>
+					
+					<ul class="dropdown-menu dropdown-menu-right">
+					    <li>
+						<a data-pmb-action="edit" data-target="#">Edit</a>
+					    </li>
+					</ul>
+				    </li>
+				</ul>
+			    </div>
+			    <div class="pmbb-body p-l-30">
+				<div class="pmbb-view">
+				    <dl class="dl-horizontal">
+					<dt>Mobile Phone</dt>
+					<dd>{{profileDetails.mobile}}</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt>Email Address</dt>
+					<dd>{{profileDetails.email}}</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt>Address1</dt>
+					<dd>{{profileDetails.address1}}</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt>Address2</dt>
+					<dd>{{profileDetails.address2}}</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt>City</dt>
+					<dd>{{profileDetails.city}}</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt>State</dt>
+					<dd>{{profileDetails.state}}</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt>Country</dt>
+					<dd>{{profileDetails.country}}</dd>
+				    </dl>
+				    
+				</div>
+				
+				<div class="pmbb-edit">
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">Mobile Phone</dt>
+					<dd>
+					    <div class="fg-line">
+						<input type="text" name="mobile" class="form-control" value="{{profileDetails.mobile}}" />
+					    </div>
+					</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">Email Address</dt>
+					<dd>
+					    <div class="fg-line">
+						<input type="email" name="email" class="form-control" value="{{profileDetails.email}}" />
+					    </div>
+					</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">Address1</dt>
+					<dd>
+					    <div class="fg-line">
+						<input type="text" name="address1" class="form-control" value="{{profileDetails.address1}}" />
+					    </div>
+					</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">Address2</dt>
+					<dd>
+					    <div class="fg-line">
+						<input type="email" name="address2" class="form-control" value="{{profileDetails.address2}}" />
+					    </div>
+					</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">City</dt>
+					<dd>
+					    <div class="fg-line">
+						<input type="text" name="city" class="form-control" value="{{profileDetails.city}}" />
+					    </div>
+					</dd>
+				    </dl>
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">State</dt>
+					<dd>
+					    <div class="fg-line">
+						<input type="email" name="state" class="form-control" value="{{profileDetails.state}}" />
+					    </div>
+					</dd>
+				    </dl>
+				    <div class="m-t-30">
+					<button class="btn btn-primary btn-sm waves-effect" ng-click='updateProfile()'>Save</button>
+					<button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="pmb-block">
+			    <div class="pmbb-header">
+				<h2><i class="md md-person m-r-5"></i> Basic Information</h2>
+				
+				<ul class="actions">
+				    <li class="dropdown">
+					<a data-toggle="dropdown">
+					    <i class="md md-more-vert"></i>
+					</a>
+					
+					<ul class="dropdown-menu dropdown-menu-right">
+					    <li>
+						<a data-pmb-action="edit" >Edit</a>
+					    </li>
+					</ul>
+				    </li>
+				</ul>
+			    </div>
+			    <div class="pmbb-body p-l-30">
+				<div class="pmbb-view">
+				    <dl class="dl-horizontal">
+					<dt>Full Name</dt>
+					<dd> {{profileDetails.fname}}</dd>
+				    </dl>
+				   <!-- <dl class="dl-horizontal">
+					<dt>Gender</dt>
+					<dd> {{profileDetails.gender}}</dd>
+				    </dl>-->
+				    <dl class="dl-horizontal">
+					<dt>Birthday</dt>
+					<dd> {{profileDetails.dob}}</dd>
+				    </dl>
+				</div>
+				
+				<div class="pmbb-edit">
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">Full Name</dt>
+					<dd>
+					    <div class="fg-line">
+						<input type="text" name="fname" class="form-control" value="{{profileDetails.fname}}" >
+					    </div>
+					    
+					</dd>
+				    </dl>
+				    <!--<dl class="dl-horizontal">
+					<dt class="p-t-10">Gender</dt>
+					<dd>
+					    <div class="fg-line">
+						<select class="form-control" name='gender' {{profileDetails.gender}} >
+						    <option>Male</option>
+						    <option>Female</option>
+						</select>
+					    </div>
+					</dd>
+				    </dl>-->
+				    <dl class="dl-horizontal">
+					<dt class="p-t-10">Birthday</dt>
+					<dd>
+					    <div class="dtp-container dropdown fg-line">
+						<input name="dob" type='text' class="form-control date-picker" data-toggle="dropdown" value="{{profileDetails.dob}}">
+					    </div>
+					</dd>
+				    </dl>
+				    <div class="m-t-30">
+					<button class="btn btn-primary btn-sm" ng-click='updateProfile()'>Save</button>
+					<button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+				    </div>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		    <div role="tabpanel" class="tab-pane" id="messages11">
+			<div class="pmb-block">
+			    <div class="pmbb-header">
+				<h2><i class="md md-person m-r-5"></i> FeedBack</h2>
+				
+				<ul class="actions">
+				    <li class="dropdown">
+					<a data-toggle="dropdown">
+					    <i class="md md-more-vert"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right">
+					    <li>
+						<a data-pmb-action="edit" >Delete FeedBack</a>
+					    </li>
+					</ul>
+				    </li>
+				</ul>
+			    </div>
+<!--			    <div class="pmbb-body p-l-30">
+				<div class="pmbb-view">
+				    <div class="ms-body">
+					<div class="listview lv-message"ng-repeat="feedback in FeedBackMessage" >
+					    <div class="lv-header-alt bgm-white">
+						<div class="lv-body">                                    
+						    <div class="lv-item media">
+							<div class="lv-avatar pull-left">
+							    <img src="img/dinner.jpg" alt="">
+							</div>
+							<div class="media-body">
+							    <!-- Me:<br> -->
+							    <!--<div class="ms-item">
+								{{ feedback.message }}
+							    </div>
+							</div>
+						    </div>
+						    
+						    <div class="lv-item media right">
+							<div class="lv-avatar pull-right">
+							    <img src="img/logo.jpg" alt="">
+							</div>
+							<div class="media-body">
+							    
+							    <div class="ms-item">
+							      {{feedback.sendMessage}}
+							    </div>
+							</div>
+						    </div>-->
+						</div>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			    
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+<!--</div>-->
+</ion-view>

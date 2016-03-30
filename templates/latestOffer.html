@@ -1,0 +1,45 @@
+<ion-view>
+        
+        <div class="card" ng-controller="latestOfferController">
+            <div class="card-body card-padding">
+                <!--<div class="card-header">
+                <a href="#addTocartpage" class="btn bgm-cyan waves-effect pull-right" style="margin-right:10px;">
+                   <i class="md md-shopping-cart md-white"></i>Cart <span id="cartCount">0</span>
+                </a>
+
+            </div>-->
+             <br>   
+              <br>  
+                <!-- <p class="f-500 c-black m-b-20"><center><strong>Latest offers</strong></center></p>  #DD1C17 -->
+            
+
+                <div class="carousel ng-isolate-scope col-sm-6 col-xs-12"  ng-repeat="offers in latestOffers">
+  
+                    <div  class="carousel-inner">
+                    
+                        <div  class="item text-center ng-isolate-scope active" >
+                            <a href="" ng-click="Add_toCart($event,$index,offers);" >
+                            <img class="ng-scope" style="width: 100%;" src="{{offers.image}}">
+                            <div  class="carousel-caption">
+                                <h3 class="ng-binding">{{offers.title}}</h3>
+                                <p class="ng-binding">{{offers.name}}</p>
+                                <p class="ng-binding">{{offers.price}} AED</p>
+                            </div>  
+                            <a aria-expanded="false"  href="" ng-click="Add_toCart($event,$index,offers);" class="btn bgm-deeporange btn-floatLeft z-depth-1 waves-effect pull-right">
+                                <i class="md md-shopping-cart md-white md-large"></i>
+                            </a>
+                            </a>
+                            
+                        </div>
+                            
+                            
+                    </div>
+                    <br>
+
+                </div>
+
+
+            </div>
+        </div>
+    
+</ion-view>

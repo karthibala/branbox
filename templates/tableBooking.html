@@ -1,0 +1,145 @@
+<ion-view>
+<style type="text/css"> 
+/*.card {
+    height: 700px;
+    background: #fff;
+}*/
+</style>
+    <div class="card" ng-controller="tableBooking">
+        <div class="card-body card-padding" style="padding-left: 10px;">
+                <div class="pmb-block">
+                    <div class="pmbb-header">
+                        <br>
+                        <h4 class="text-center">
+                            <!--  <span class="myfont"> -->
+                            <i class="md md-equalizer m-r-5"></i> 
+                    Table Reservation</h4>
+                    </div>
+                </div>
+                <br>
+
+                <div class="col-sm-12" id="timed">
+                    <div class="col-sm-4">
+                         <p class="c-black f-500 m-b-20">Select date</p>
+                        <div class="input-group form-group">
+                            <span class="input-group-addon"><i class="md md-event"></i></span>
+                                <div class="dtp-container dropdown fg-line">
+                                <input type='text'   id="bookDate"  class="form-control" ng-click="getDate()"  placeholder="Delivery date">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <p class="c-black f-500 m-b-20">Select Time</p>
+                        <div class="input-group form-group">
+                            <span class="input-group-addon"><i class="md md-access-time"></i></span>
+                                <div class="dtp-container dropdown fg-line">
+                                <input type='text'  id="bookTime" class="form-control"  ng-click="getTime()"  placeholder="Delivery Time">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="c-black f-500 m-b-20">Select Members</p>
+                        <div class="input-group form-group">
+                             <span class="input-group-addon"><i class="md md-store-mall-directory"></i></span>
+                                     <div class="select">
+                                <select class="form-control" id="mems" name="mems">
+                                    <option>Select</option>
+                                    <option value="1">1 </option>
+                                    <option value="2">2 </option>
+                                    <option value="3">3 </option>
+                                    <option value="4">4 </option>
+                                    <option value="5">5 </option>
+                                    <option value="6">6 </option>
+                                    <option value="7">7 </option>
+                                    <option value="8">8 </option>
+                                    <option value="9">more than 8</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button button-small  icon-right  text-center">
+                     <button class="btn bgm-deeporange btn-lg waves-effect" ng-click="save()">Table Booking</button>
+                </div>  
+
+                <!-- <div class="pmbb-body p-l-10">
+                    <div class="card-header">                            
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="c-black f-500 m-b-20">Select date</p>
+                                
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="md md-event"></i></span>
+                                        <div class="dtp-container dropdown fg-line">
+                                        <input type='text' name="bookDate" id="bookDate"  class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-3">
+                                <p class="c-black f-500 m-b-20">Select Time</p>
+                                
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="md md-access-time"></i></span>
+                                        <div class="dtp-container dropdown fg-line">
+                                        <input type='text' name="bookTime" id="bookTime" class="form-control time-picker" data-toggle="dropdown" placeholder="Click here...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p class="c-black f-500 m-b-20">Select Members</p>
+                                
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="md md-store-mall-directory"></i></span>
+                                     <div class="select">
+                                <select class="form-control" id="mems" name="mems">
+                                    <option>Select</option>
+                                    <option value="1">1 Member</option>
+                                    <option value="2">2 Members</option>
+                                    <option value="3">3 Members</option>
+                                    <option value="4">4 Members</option>
+                                    <option value="5">5 Members</option>
+                                    <option value="6">6 Members</option>
+                                    <option value="7">7 Members</option>
+                                    <option value="8">8 Members</option>
+                                    <option value="9">9 Members</option>
+                                   <option value="10">10 Members</option>
+                                </select>
+                            </div>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+                </div> -->
+                <!-- <center>
+                         <div class="row">
+                            <div class="col-offset-2 col-sm-4 ">
+                                <div class="input-group form-group">
+                                    <button class="btn bgm-deeporange btn-lg waves-effect" ng-click="save()">save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </center> -->
+            </div>
+        </div>
+</script>
+        <script >
+$(document).ready(function(){
+
+    //alert("asdf");
+       
+
+        $('.time-picker').datetimepicker({
+            format: 'LT'
+        });
+ 
+    
+
+        $('.date-picker').datetimepicker({
+            format: 'YYYY/MM/DD'
+        });});
+
+
+</script>
+</ion-view>

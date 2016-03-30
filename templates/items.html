@@ -1,0 +1,91 @@
+<ion-view>
+    <div class="card">
+        <!--<div class="card-header">
+            <div class="itempageshowing">
+                <div class="order">
+                    <a aria-expanded="false" data-toggle="dropdown" href="" ng-click="goback();" class="btn bgm-userdefined btn-floatLeft z-depth-1 waves-effect btn-md2 pull-left">
+                        <i class="md  md-keyboard-backspace"></i>
+                    </a>
+                </div>
+            </div>
+        </div>-->
+        <div class="card-body card-padding">
+          
+            <div class="itempageshowing">
+                <div class=" order col-sm-6 col-xs-12 " ng-repeat="SubMenuItem in SubMenuItemData  | filter:SubMenuItem">
+                    <div class="">
+                        <div class="thumbnail">
+                            <input type="hidden" class="price{{$index}}" value="{{item.price}}">
+                            <img alt="" style="width: 100%;" ng-src="{{SubMenuItem.image}}" imageonload="{{SubMenuItem.image}}" onerror="this.src='assets/background/default.jpg';this.onerror=null;" >
+                            <div class="caption">
+                                <h4 ng-init="price = SubMenuItem.price" class>{{SubMenuItem.name}}</h4>
+                                <p id="fant">{{price}} {{currency}}</p>
+                                <p>
+                                    <span>
+                                        <button class="btn bgm-teal   btn-md2 waves-effect" type="button" data-toggle="collapse" data-target="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample{{$index}}">Details
+                                        </button>
+                                    </span>
+                                    <span class=" pull-right" ng-if="needCartConcept == 'YES' &&  SubMenuItem.online=='ON'">
+                                        <button class="btn btn-danger btn-md1 waves-effect" style="width: 50px;" type="button" ng-click='minus($event,$index,SubMenuItem);' id="minus" value="1" ><span style="font-size: 30px;">-</span></button>
+                                        <input type="button"  value="1" name="quantity" ng-model="quantity" class="btn bgm-bluegray quantity1 btn-md1 waves-effect"id="quantity{{$index}}">
+                                        <button class="btn btn-danger btn-md1 waves-effect" style="width: 50px;"  ng-click='plus($event,$index,SubMenuItem);' id="plus" value="1" type="button"><span style="font-size: 30px;">+</span></button>
+                                        <button class="btn bgm-bluegray btn-md waves-effect text-center icon-left ion-ios-cart" value="1" id="addtocart{{$index}}" ng-click="addToCart($event,$index,SubMenuItem);" type="button"  data-type="inverse"  data-from="top" data-align="center"><i class="md-shopping-cart"></i></button>
+                                    </span>
+                                </p>
+                                <br>
+                                <div class="collapse m-t-10" id="collapseExample{{$index}}">
+                                    <form id="FormValidation{{$index}}" method="">
+                                       <div class="table-responsive" style="">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>&nbsp;</th>
+                                                        <th ng-if="needCartConcept == 'YES' " >&nbsp;</th>
+                                                        <th ng-if="needCartConcept == 'YES' " >&nbsp;</th>
+                                                    </tr>
+                                                </thead>  
+                                                <tbody>
+                                                    <tr ng-repeat="ingredients in SubMenuItemIngredientsData" ng-if="SubMenuItem.id==ingredients.itemId" >
+                                                        <td>{{ingredients.ingredients}} 
+                                                            <span ng-if="ingredients.category=='addon'" style="color:red;"> 
+                                                             {{ingredients.price}} {{currency}} 
+                                                            </span>
+                                                        </td>
+                                                        <td ng-if="needCartConcept == 'YES' " >
+                                                            <div class="toggle-switch" data-ts-color="green" ng-if="ingredients.category=='default'">
+                                                                <input  type="checkbox" value="YES"  ng-click="savecYesno($event,ingredients,$index);"   hidden="hidden" id="ts{{$index}}">
+                                                                <label class="ts-helper" for="ts{{$index}}"></label>
+                                                                <input type="hidden" class="IngDetails1" name="IngDetails" id="IngDetails{{$index}}" value="YES"> 
+                                                            </div>
+                                                            <div class="toggle-switch" data-ts-color="red" ng-if="ingredients.category=='addon'">
+                                                                <input  type="checkbox" value="YES"  ng-click="savecYesno($event,ingredients,$index);" hidden="hidden" id="ts{{$index}}">
+                                                                <label class="ts-helper" for="ts{{$index}}"></label>
+                                                                <input type="hidden" class="IngDetails1" name="IngDetails" id="IngDetails{{$index}}" value="YES"> 
+                                                            </div>
+                                                            <div class="toggle-switch hide" data-ts-color="red" ng-if="ingredients.category=='base'">
+                                                                <input  type="checkbox" value="NO"  ng-click="savecYesno($event,ingredients,$index);"  id="ts{{$index}}">
+                                                                <label class="ts-helper" for="ts{{$index}}"></label>
+                                                                  <input type="hidden" name="IngDetails" id="IngDetails{{$index}}" value="NO"> 
+                                                            </div>
+                                                        </td>
+                                                        <td ng-if="needCartConcept == 'YES' " >
+                                                            <div class="form-group fg-line">
+                                                            <input id="notes{{$index}}" name="notes" class="form-control input-sm" ng-keyup="saveExtra($event,ingredients,$index)" type="email" placeholder="Notes">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>     
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+           
+        </div>
+    </div>
+</ion-view>

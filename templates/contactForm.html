@@ -1,0 +1,188 @@
+<style>
+.card {
+    /*height: 700px;*/
+    background-image: url("assets/background/13.jpg") !important;
+}
+.welStyle{
+    background: rgba(0, 0, 0, 0.22) none repeat scroll 0 0 !important;
+    border-radius: 4px;
+    color: #ccc;
+}
+.welStyle a {
+    float: right;
+}
+
+.contactinfo{
+    background: rgba(0, 0, 0, -1.08) none repeat scroll 0 0 !important;
+    border-radius: 4px;
+    /*color: #ccc;*/
+}
+h2{
+    color:#F44336;
+}
+.inputstyle{
+   border-radius: 4px; 
+}
+.contact{
+    float: right;
+}
+/*.align{
+    margin-top: -19px;
+    margin-left:125px;
+}*/
+
+@media only screen and (min-width:320px) and (max-width: 420px){
+    .align{
+    margin-top: -19px;
+    margin-left:125px;
+   /*float: right;*/
+   text-align: justify;
+}
+}
+@media only screen and (min-width:420px) and (max-width: 765px){
+    .align{
+    margin-top: -19px;
+    margin-left:250px;
+   /*float: right;*/
+   text-align: justify;
+}
+}
+@media screen and (min-width: 766px) {
+    .align{
+        /*margin-left: 424px;*/
+        margin-top: 17px;
+}
+}
+
+.para p{
+    line-height: 2px;
+    
+    }
+.table{
+    font-size: 15px;
+    background: none;
+}
+</style>
+
+<ion-view>
+<div class="card bs-item  container-fluid" ng-controller="contactCtrl"><br> 
+    <div class="contacts clearfix"><h2>Contact Info</h2>
+        <!--<table class="table borderless">
+                <tr>
+                    <th><h4><i class=" md-my-location"></i>Address</h4></th>
+                    <td>Branbox Restaurant, 41 bajanaimadam st, Reddiyarpalayam, Puducherry.</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>Branbox Restaurant,</td>
+                </tr>
+            </table>-->
+        <div class="well contactinfo">
+           <div class="row">
+            <div class="col-sm-6">
+            <div class="row para">
+                <div class="col-sm-3">
+                    <h4><i class=" md-my-location"></i>Address</h4>
+                </div >
+                <div class="col-sm-9 align">
+                    <p>{{addressDtails.brandName}},</p>
+                    <p>{{addressDtails.address1}},</p>
+                    <p>{{addressDtails.address2}},</p>
+                    <p>{{addressDtails.city}},</p>
+                    <p>{{addressDtails.state}},</p>
+                    <p>{{addressDtails.country}}.</p>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6">
+            <div class="row para">
+                <div class="col-sm-3">
+                    <h4><i class="md md-email"></i>Email</h4>
+                </div>
+                <div class="col-sm-9 align">
+                     <p>{{addressDtails.email1}}</p>
+                </div>
+            </div>
+            </div>
+           </div>
+           <div class="row">
+            <div class="col-sm-6">
+            <div class="row para">
+                <div class="col-sm-3">
+                    <h4><i class="md md-call"></i>Phone</h4>
+                </div>
+                <div class="col-sm-9 align">
+                    <p><a class="btn" ng-href="tel: {{addressDtails.phoneNumber1}}"><i class="md md-call "></i> {{addressDtails.phoneNumber1}}</a></p>
+                    <p><a class="btn" ng-href="tel: {{addressDtails.phoneNumber2}}"><i class="md md-call "></i> {{addressDtails.phoneNumber2}}</a></p>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6">
+            <div class="row para">
+                <div class="col-sm-3">
+                    <h4><i class="md md-web"></i>Websites</h4> 
+                </div>
+                <div class="col-sm-9 align">
+                    <p>{{addressDtails.website}}</p>
+                </div>
+            </div>
+            </div>
+           </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="card-body "  >
+                   <div >
+                        <div class="col-md-12 "> 
+                           
+                        </div>
+                       
+                </div>
+            </div>
+    </div>    
+</div>
+<div class="card ">
+        <div class="card-body card-padding ">
+            <h2>Leave us a message...</h2>
+            <div class="form-group well welStyle">
+                <div>
+                    <!--<a class="btn" ng-href="tel: {{addressDtails.phoneNumber1}}"><i class="md md-call "></i> {{addressDtails.phoneNumber1}}</a>-->
+                    
+              
+                </div>
+                <br>
+            <form role="form" >
+                <div class="row">
+
+                    <div class="col-sm-12 form-group">   
+                        <!-- <h4 class="">Contact US</h4>                    -->
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="md md-person"></i></span>
+                            <div class="fg-line">
+                                <input type="text" placeholder="Full Name" name="username" id="username" class="form-control" style="border-radius: 4px;">
+                            </div>
+                        </div><br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="md md-email"></i></span>
+                            <div class="fg-line">
+                                <input type="text" placeholder="Email Address" name="email"  id="email" class="form-control" style="border-radius: 4px;">
+                            </div>
+                        </div><br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="md md-comment"></i></span>
+                            <div class="fg-line">
+                                <textarea placeholder="Comments...." rows="5" name="feedbackMessage"  id="feedbackMessage" class="form-control" style="border-radius: 4px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <center>
+                    <button type="submit" ng-click="sendFeedBack();" class="btn bgm-deeporange  btn-sm m-t-10">Submit</button>
+                </center>
+                
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+</ion-view>
+

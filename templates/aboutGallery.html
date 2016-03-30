@@ -1,0 +1,54 @@
+<ion-view >
+<style type="text/css"> 
+/*.card {*/
+/*    height:1000px;*/
+/*}*/
+	
+</style>
+    <div class="card" id="profile-main" ng-controller='aboutUs'>
+	<div class="pm-overview c-overflow">
+	    <div class="pmo-pic">
+		<div class="p-relative">
+		   <a href="" id="images"></a>
+		    <div class="dropdown pmop-message">
+			<a data-toggle="dropdown" href="" class="btn bgm-white btn-float z-depth-1">
+			    <i class="md md-message"></i>
+			</a>
+		    </div>
+		</div>
+		<div class="pmo-stat">
+		    <h2 class="m-0 c-white"></h2>
+		    {{addressDtails.brandName}}
+		</div>
+	    </div>
+	</div>
+	
+	<div class="pm-body clearfix ">
+	    <ul class="tab-nav tn-justified">
+		<li class="waves-effect"><a href="#aboutUs">About</a></li>
+		<li class="waves-effect active"><a href="#aboutGallery">Photos</a></li>
+		<li class="waves-effect"><a href="#contactUs">Contact Us</a></li>  
+	    </ul>
+	    <div class=" clearfix photos well">          
+		<div class="lightbox row">    
+		    <div class="lightbox" id="lightbox">
+			<div ng-repeat="item in aboutGalleryImages" data-src="{{item.images}}" class="col-md-3 col-sm-4 col-xs-6" on-finish-render="test">
+			    <div class="lightbox-item p-item">
+				<img ng-src="{{item.images}}" alt="" class="animated flip">
+			    </div>
+			</div>  
+		    </div>                        
+		</div>
+	    </div>
+	</div>
+    </div>
+
+</ion-view>
+<script>
+    $(document).ready(function(){
+        $('.lightbox').lightGallery({
+            enableTouch: true
+        });
+    });
+    
+</script>

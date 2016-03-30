@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <!--<link href="css/style.css" rel="stylesheet">-->
+<!--material design-->
+
+        <link href="assets/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="assets/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="assets/vendors/bower_components/sweetalert/dist/sweetalert-override.min.css" rel="stylesheet">
+        <link href="assets/vendors/bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css" rel="stylesheet">
+        
+          
+        <!--<link href="assets/vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css" rel="stylesheet">-->
+        <!-- ezhil -->
+        <link href="assets/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <!-- ezhil -->
+        <link href="assets/vendors/bower_components/mediaelement/build/mediaelementplayer.css" rel="stylesheet">
+        <link href="assets/vendors/socicon/socicon.min.css" rel="stylesheet">
+
+  
+        <link href="css/loader.css" rel="stylesheet">
+          
+        <link href="assets/bootstrap-material-design/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/bootstrap-material-design/dist/css/roboto.min.css" rel="stylesheet">
+        <!--<link href="assets/bootstrap-material-design/dist/css/material-fullpalette.min.css" rel="stylesheet">-->
+        <link href="assets/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+        <link href="assets/bootstrap-material-design/dist/css/snackbar.min.css" rel="stylesheet">
+        <!--<link href="assets/lightgallery/light-gallery/css/lightGallery.css" rel="stylesheet">-->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <!--<link href="css/app.min.2.css" rel="stylesheet">-->
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+	
+	<!-- Gallery Zoom in PhotoSwipe Plugin js Start -->
+	<script src="dist/photoswipe.min.js"></script>
+	<script src="dist/photoswipe-ui-default.min.js"></script>
+	<!-- Gallery Zoom in PhotoSwipe Plugin js Ends -->
+	
+   
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    
+    <script src="cordova.js"></script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    
+    <!--<script src="lib/ngCordova/dist/ng-cordova.js"></script>-->
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+</head>
+  <body  ng-app="starter" ng-controller="MenuController">
+<style type="text/css">
+
+         #header{
+            background: {{HeaderColor}};
+         }
+         .bgm-userdefined{
+          background: {{HeaderColor}};
+         }
+         .main{
+          background:#FFF;
+         }
+         #sidebar .profile-menu > a {
+            background: url({{SideHeaderLogo}}) no-repeat left top;
+         }
+         
+         /*.sidebar-inner{*/
+         /* font-family: {{sideMenuFont}};*/
+         /* background: {{sideMenuBackColor}};*/
+         /* color: {{sideMenufontColor}}; */
+         /*}*/
+         .sidebar-inner
+         {
+          background: {{sideMenuBackColor}} !important;
+         
+         }
+         .sidebar-inner ul li a{
+           color: {{sideMenufontColor}} !important;
+           font-family: {{sideMenuFont}} !important;
+         }
+        </style>
+<!--   #1a5e5a #737070  -->
+        <header id="header">
+            <ul class="header-inner">
+                <li ng-if="sideMenuData.needSideMenu == 'YES'" id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+                <li class="logo">
+            <!--<li class="logo hidden-xs">-->
+                <!-- <a href="#dashboard">  style="width:86px; 728 vertical-align:middle; border-radius: 5px; height:43px; margin-top: -2px;"--> <img ng-src="{{HeaderLogo}}" onerror="this.src='assets/logo1.jpg';this.onerror=null;"  imageonload="{{SubMenus.image}}"  alt="" ><!-- </a> -->
+            </li>
+                <li class="pull-right">
+                    <ul class="top-menu">
+                        <li id="toggle-width">
+                            <div class="toggle-switch">
+                                <input id="tw-switch" type="checkbox" hidden="hidden">
+                                <label for="tw-switch" class="ts-helper"></label>
+                            </div>
+                        </labeli>
+
+                       
+                        <li class="dropdown" id="dropdownClose1"  ng-click="sendResponse()">
+                            <a data-toggle="dropdown" class="tm-message showtoken hide"> 
+                                <i class="tmn-counts" id="dropdownCount1"><span class="tockCount">{{FeedBackcount}}</span></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg pull-right">
+                                <div class="listview">
+                                    <div ng-show='TokenNumber != 0'>
+                                        <div class="lv-header">
+                                            Token Number
+                                        </div>
+                                        <div>
+                                            <div class="lv-body c-overflow" >
+                                                <a class="lv-item" href="">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <center>
+                                                                <div class="lv-title tokdata">{{TokenNumber}}</div>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    <!--<a class="lv-footer" href="#">View All</a>-->
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="dropdown" id="dropdownClose2" ng-if="sideMenuData.menuStatus4 == 'YES' && latestoffer">
+                            <a data-toggle="dropdown" id="countOffersClose" class="tm-notification hide">
+                                <i class="tmn-counts"  id="dropdownCount2"><span>{{countOffers}}</span></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-lg pull-right">
+                                <div class="listview">
+                                    <div class="lv-header">
+                                        Offers
+                                    </div>
+                                    <div ng-repeat="ofers in OffersData">
+
+                                        <div class="lv-body c-overflow" >
+                                            <a class="lv-item" href="#latestOffers">
+                                                <div class="media">
+                                                    <div class="pull-left">
+                                                        <img class="lv-img-sm" src="{{ofers.image}}" alt="">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="lv-title">{{ofers.title}}</div>
+                                                        <small class="lv-small">{{ofers.name}}</small>
+                                                        <small class="lv-small">{{ofers.descrition}}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a class="lv-footer" href="#latestOffers">View All</a>
+                                </div>
+                            </div>
+                        </li>
+                         <li ng-if="needCartConcept == 'YES' " class="dropdown">
+                              <a href="#addTocartpage" class="btn bgm-cyan waves-effect pull-right" style="margin-right:10px;">
+                                <i class="md md-shopping-cart md-white"></i>&nbsp;<span id="cartCount">0</span>
+                              </a>
+                       </li>
+                       <li class="dropdown" ng-show="loggedIn != null">
+                            <a class="tm-settings" data-toggle="dropdown"></a>
+                            <ul class="dropdown-menu pull-right bgm-gray" style="font-size:19px;"> 
+                                <li ><a href="index.html" id="logout" style="font-size:16px;" ><i class="md md-history"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Top Search Content -->
+            <div id="top-search-wrap">
+                <input type="text">
+                <i id="top-search-close">&times;</i>
+            </div>
+        </header>
+        <section id="main hide">
+            <aside id="sidebar">
+                <div class="sidebar-inner c-overflow" style="overflow: scroll" tabindex="3">
+                    <div class="profile-menu">
+                        <a href="#">
+                            <div class="profile-pic  pull-right transparentbox">
+                            </div>
+                        </a>
+                    </div>
+                     <!--<ul class="main-menu">
+                        
+
+                        <li ng-show="userId == null "><a href="#login"><i class="md-person md-large" menu-close="" nav-clear=""></i>Sign In</a></li>
+                        <li ng-show="userId != null "><a href="#myProfile"><i class="md-person md-large" menu-close="" nav-clear=""></i>My Profile</a></li>
+                        <li><a href="#menu"><i class="md-restaurant-menu md-large" menu-close="" nav-clear=""></i>Menus</a></li>
+                        
+                        <li ng-if="latestoffer"><a href="#latestOffers"> <i class=" md-wallet-giftcard md-large" menu-close="" nav-clear=""></i>Latest Offers</a></li>
+                        <li><a  href="#tableBooking"><i class="md-store-mall-directory md-large" menu-close="" nav-clear=""></i>Table Booking</a></li>
+                        <li><a href="#aboutUs"><i class="md-home md-large" menu-close="" nav-clear=""></i> About Us</a></li>
+                        <li><a href="#location"><i class="md-location-on md-large" menu-close="" nav-clear=""></i> Locations</a></li> 
+                        <li><a href="#gallery"><i class="md-photo-library md-large" menu-close="" nav-clear=""></i>Gallery</a></li>
+                    </ul>-->
+                    <ul class="main-menu">
+                        
+
+                        <li ng-if="sideMenuData.menuStatus1 == 'YES' && userId == null "><a href="#login"><i class="{{sideMenuData.menuIcon1}} md-large" menu-close="" nav-clear=""></i>{{sideMenuData.menuCaption1}}</a></li>
+                        <li ng-if="sideMenuData.menuStatus2 == 'YES' && userId != null "><a href="#myProfile"><i class="{{sideMenuData.menuIcon2}} md-large" menu-close="" nav-clear=""></i>{{sideMenuData.menuCaption2}}</a></li>
+                        <li ng-if="sideMenuData.menuStatus3 == 'YES'"><a href="#menu"><i class="{{sideMenuData.menuIcon3}} md-large" menu-close="" nav-clear=""></i>{{sideMenuData.menuCaption3}}</a></li>
+                        
+                        <li ng-if="sideMenuData.menuStatus4 == 'YES' && latestoffer"><a href="#latestOffers"> <i class=" {{sideMenuData.menuIcon4}} md-large" menu-close="" nav-clear=""></i>{{sideMenuData.menuCaption4}}</a></li>
+                        <li ng-if="sideMenuData.menuStatus5 == 'YES'"><a  href="#tableBooking"><i class="{{sideMenuData.menuIcon5}} md-large" menu-close="" nav-clear=""></i>{{sideMenuData.menuCaption5}}</a></li>
+                        <li ng-if="sideMenuData.menuStatus6 == 'YES'"><a href="#aboutUs"><i class="{{sideMenuData.menuIcon6}} md-large" menu-close="" nav-clear=""></i> {{sideMenuData.menuCaption6}}</a></li>
+                        <li ng-if="sideMenuData.menuStatus7 == 'YES'"><a href="#location"><i class="{{sideMenuData.menuIcon7}} md-large" menu-close="" nav-clear=""></i>{{sideMenuData.menuCaption7}}</a></li> 
+                        <li ng-if="sideMenuData.menuStatus8 == 'YES'"><a href="#gallery"><i class="{{sideMenuData.menuIcon8}} md-large" menu-close="" nav-clear=""></i>{{sideMenuData.menuCaption8}}</a></li>
+                        <!--<li ><a href="#gallerypage"><i class="{{sideMenuData.menuIcon1}} md-large" menu-close="" nav-clear=""></i>galleryPage</a></li>-->
+                    </ul>
+                </div>
+            </aside>
+            
+            <section id="content">
+                <div class="">
+                    <div ng-view> </div>
+                </div>
+            </section>
+        </section>
+</body>
+  
+        
+        <script src="assets/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="assets/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="js/lightgallery.js"></script>
+        <script src="js/lg-thumbnail.js"></script>
+        <script src="js/lg-zoom.js"></script>
+		
+
+        <script src="assets/vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="assets/vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="assets/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="assets/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="assets/vendors/sparklines/jquery.sparkline.min.js"></script>
+        <script src="assets/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="assets/vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="assets/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="assets/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="assets/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="assets/vendors/bower_components/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+        
+        <script src="assets/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="assets/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="assets/vendors/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+        <script src="assets/vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js"></script>
+        <script src="assets/vendors/bower_components/mediaelement/build/mediaelement-and-player.min.js"></script>
+        <script src="assets/angular-ui-router/angular-route.js"></script>
+        <script src="lib/ionic/js/angular-ui/angular-ui-router.js"></script>
+        <script src="js/functions.js"></script>
+        <script src="PushNotification.js"></script>
+        
+        
+        <!--material design-->
+        
+        
+<script>
+
+        //$(document).ready(function ($) {
+        // 
+        //    var nestedSliders = [];
+        //
+        //    $.each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (index, containerId) {
+        //        var nestedSliderOptions = {
+        //            $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+        //            $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+        //            $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+        //            //$SlideWidth: 200,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+        //            //$SlideHeight: 150,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+        //            $SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
+        //            $DisplayPieces: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+        //            $ParkingPosition: 0,                              //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+        //            $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+        //
+        //            $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+        //                $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
+        //                $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+        //                $AutoCenter: 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+        //                $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
+        //                $Lanes: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
+        //                $SpacingX: 10,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+        //                $SpacingY: 0,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+        //                $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+        //            }
+        //        };
+        //
+        //        nestedSliders.push(new $JssorSlider$(containerId, nestedSliderOptions));
+        //    });
+        //
+        //    var options = {
+        //        $AutoPlay: false,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+        //        $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
+        //        $AutoPlayInterval: 2000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+        //        $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+        //
+        //        $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+        //        $SlideDuration: 300,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+        //        $MinDragOffsetToSlide: 80,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+        //        //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+        //        //$SlideHeight: 150,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+        //        $SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
+        //        $DisplayPieces: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+        //        $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+        //        $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+        //        $PlayOrientation: 2,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+        //        $DragOrientation: 0,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0),
+        //        
+        //        $ThumbnailNavigatorOptions: {
+        //            $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+        //            $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+        //
+        //            $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+        //            $AutoCenter: 3,                                 //[Optional] Auto center thumbnail items in the thumbnail navigator container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 3
+        //            $Lanes: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
+        //            $SpacingX: 0,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+        //            $SpacingY: 0,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
+        //            $DisplayPieces: 3,                              //[Optional] Number of pieces to display, default value is 1
+        //            $ParkingPosition: 0,                          //[Optional] The offset position to park thumbnail
+        //            $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
+        //            $DisableDrag: false                            //[Optional] Disable drag or not, default value is false
+        //        }
+        //    };
+        //
+        //    var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+        //
+        //    function OnMainSliderPark(currentIndex, fromIndex) {
+        //        $.each(nestedSliders, function (index, nestedSlider) {
+        //            nestedSlider.$Pause();
+        //        });
+        //
+        //        setTimeout(function () {
+        //            nestedSliders[currentIndex].$Play();
+        //        }, 2000);
+        //    }
+        //
+        //    jssor_slider1.$On($JssorSlider$.$EVT_PARK, OnMainSliderPark);
+        //    OnMainSliderPark(0, 0);
+        //
+        //    //responsive code begin
+        //    //you can remove responsive code if you don't want the slider scales while window resizes
+        //    function ScaleSlider() {
+        //        var bodyWidth = document.body.clientWidth;
+        //        if (bodyWidth)
+        //            jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 600));
+        //        else
+        //            window.setTimeout(ScaleSlider, 30);
+        //    }
+        //    ScaleSlider();
+        //
+        //    $(window).bind("load", ScaleSlider);
+        //    $(window).bind("resize", ScaleSlider);
+        //    $(window).bind("orientationchange", ScaleSlider);
+        //    //responsive code end
+        //});
+    </script>
+<script type="text/javascript">
+  
+   
+         var $lg = $('.lightgallery');
+$lg.lightGallery({
+    pager: true
+});
+var data = $lg.data('lightGallery');
+
+$lg.on('onAferAppendSlide.lg', function (event, index) {
+    var classToAdd = data.$items.eq(index).attr('data-custom-class');
+    data.$slide.eq(index).find('.lg-image').addClass(classToAdd);
+});
+    $(function() {
+       // $.material.init();
+    });
+    $("#logout").click(function () {
+        var email=  localStorage.getItem("email");
+        var password=  localStorage.getItem("password");
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("id");
+            
+            localStorage.removeItem("customerimgSrc");
+            localStorage.removeItem("ImageLivePath");
+            localStorage.removeItem("ImageUpdated");
+           
+            window.location.href = "index.html";
+             
+        
+    })
+    
+    $(".main-menu").click(function () {
+        $("#sidebar").removeClass("toggled");
+        $("#menu-trigger").removeClass("open");
+    
+    });
+    $("*#dropdownClose1").click(function () {
+        
+        $("#dropdownCount1").hide();
+        localStorage.setItem("showoToken","no");
+        $(this).removeClass("open");
+    });
+    $("*#dropdownClose2").click(function () {
+        $("#dropdownCount2").hide();
+        $(this).removeClass("open");
+    });
+    
+    setInterval(function(){
+        if (localStorage.getItem("showoToken")=="yes") {
+            if(localStorage.getItem("tokenNumber") !=null){
+                $(".showtoken").removeClass("hide");
+                $(".tokdata").html(localStorage.getItem("tokenNumber"));
+                $(".tockCount").html("1");
+            }
+        }
+        else{
+            $("#dropdownCount1").hide();
+            
+        }
+    },2000);
+    
+    setInterval(function(){
+      var cartCountGet= localStorage.getItem("cartCount");
+      if (cartCountGet >0) {
+        $("#cartCount").html(cartCountGet);
+      }
+      else{
+        $("#cartCount").html(0);
+      }
+      
+    },50)
+</script>
+
+</html>
